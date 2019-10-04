@@ -1,0 +1,22 @@
+.todo-list-item {
+    width: 500px;
+    display: flex;
+    font-size: 15px;
+    justify-content: flex-start;
+}
+.todo-list-item > button {
+    margin: 0 5px;
+}
+.todo-list-item > span {
+    justify-content: flex-start;
+    padding-right: 200px;
+    font-size: 18px;
+    text-align: left;
+}
+.todo-list-item.done > span{
+    text-decoration: line-through;
+}
+.todo-list-item.important > span{
+    color: crimson;
+    font-weight: bold;
+}
