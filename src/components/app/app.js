@@ -12,7 +12,9 @@ export default class App extends React.Component {
             { content: 'aaaaaaaaaa', important: false, done: false, id: 1 },
             { content: 'waaaaaaaaa', important: false, done: false, id: 2 },
             { content: 'damn', important: false, done: false, id: 3 }
-        ]
+        ],
+        searchWord: '',
+        filter: 'all'
     };
     deleteItem = (id) => {
         this.setState(state => {
@@ -66,22 +68,62 @@ export default class App extends React.Component {
     };
 
     onToggleImportant = (id) => {
-        this.setState(({todoData}) => {
+        this.setState((state) => {
             return {
-                todoData: this.toConstructNewArray('important', todoData, id)
+                todoData: this.toConstructNewArray('important', state.todoData, id)
             }
         })
     };
 
+    searchItems = (text) => {
+        this.setState({
+            searchWord: text,
+            filter: 'search'
+        });
+    };
+    filterAll = () => {
+        this.setState({
+            filter: 'all'
+        })
+    };
+    filterActive = () => {
+        this.setState({
+            filter: 'active'
+        })
+    };
+    filterDone = () => {
+        this.setState({
+            filter: 'done'
+        })
+    };
+    filter(items, filter) {
+        switch(filter) {
+            case 'all':
+                return items;
+            case 'active':
+                return items.filter(item => !item.done);
+            case 'done':
+                return items.filter(item => item.done);
+            default:
+                return items;
+        };
+    }
+    search(items, word) {
+        return items.filter((item) => item.content.toLowerCase().includes(word.toLowerCase()));
+    }
+
     render() {
         let doneCount = this.state.todoData.filter((item) => item.done).length;
         let todoCount = this.state.todoData.length - doneCount;
+        const filteredData = this.filter(this.search(this.state.todoData, this.state.searchWord), this.state.filter);
         return (
             <div className="app">
                 <AppHeader todos = { todoCount } done = {doneCount} />
-                <SearchPanel />
-                <ItemStatusFilter />
-                <TodoList todos = { this.state.todoData }
+                <SearchPanel onSearchItems={this.searchItems}/>
+                <ItemStatusFilter filterAll={this.filterAll}
+                                  filterActive={this.filterActive}
+                                  filterDone={this.filterDone}/>
+                <TodoList todos = { filteredData }
                           onDelete={this.deleteItem}
                           onToggleDone={this.onToggleDone}
                           onToggleImportant={this.onToggleImportant}/>

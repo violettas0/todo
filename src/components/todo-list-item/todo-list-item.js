@@ -14,10 +14,10 @@ export default class TodoListItem extends React.Component {
             <span className={classNames}>
                 <span onClick={this.props.onToggleDone}>{this.props.content}</span>
                 <button type="button"
-                        className=""
+                        className="btn"
                         onClick={this.props.onDelete}>Удалить</button>
                 <button type="button"
-                        className=""
+                        className="btn"
                         onClick={this.props.onToggleImportant}>Сделать важным</button>
             </span>
     );

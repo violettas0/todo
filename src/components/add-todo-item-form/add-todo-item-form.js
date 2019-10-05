@@ -21,7 +21,7 @@ export default class AddTodoItemForm extends React.Component {
         return (
             <form onSubmit={this.onSubmit}>
                 <input placeholder='Новое дело' onChange={this.handleChange} value={this.state.text}/>
-                <button type="submit">Добавить</button>
+                <button className="btn" type="submit">Добавить</button>
              </form>
         )}
 };

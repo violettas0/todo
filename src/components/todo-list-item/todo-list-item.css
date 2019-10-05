@@ -9,7 +9,7 @@
 }
 .todo-list-item > span {
     justify-content: flex-start;
-    padding-right: 200px;
+    padding-right: 180px;
     font-size: 18px;
     text-align: left;
 }
