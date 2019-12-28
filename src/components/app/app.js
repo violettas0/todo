@@ -9,9 +9,9 @@ import AddTodoItemForm from "../add-todo-item-form";
 export default class App extends React.Component {
     state = {
         todoData:  [
-            { content: 'aaaaaaaaaa', important: false, done: false, id: 1 },
-            { content: 'waaaaaaaaa', important: false, done: false, id: 2 },
-            { content: 'damn', important: false, done: false, id: 3 }
+            { content: 'Выпить кофе', important: false, done: false, id: 1 },
+            { content: 'Почитать новые статьи на Хабре', important: false, done: false, id: 2 },
+            { content: 'Сверстать лендинг', important: false, done: false, id: 3 }
         ],
         searchWord: '',
         filter: 'all'
